@@ -1,8 +1,10 @@
 import requests
 
 
-def getData(yyyy, mm, dd):
-    yyyymmdd = str(yyyy) + str(mm) + str(dd)
+def getData(yyyymmdd):
+    yyyy = yyyymmdd[0:4]
+    mm = yyyymmdd[4:6]
+    dd = yyyymmdd[6:8]
     url = "https://www.twse.com.tw/exchangeReport/BWIBBU_d?response=csv&date=%s&selectType=ALL" % yyyymmdd
     data = requests.get(url).text
     data = data.split("\r\n")
@@ -24,5 +26,5 @@ def getData(yyyy, mm, dd):
 
 
 if __name__ == '__main__':
-    list = getData(2021, 11, 3)
+    list = getData("20211101")
     print(len(list), list)
